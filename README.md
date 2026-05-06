@@ -12,7 +12,7 @@
 
 ## 🌐 Live Demo
 
-🔗 **[TaskForge Live](https://your-app.railway.app)** _(Update with your Railway URL after deployment)_
+🔗 **[TaskForge Live]([https://your-app.railway.app](https://taskforge-production-aa25.up.railway.app/dashboard.html))** _(Update with your Railway URL after deployment)_
 
 ---
 
