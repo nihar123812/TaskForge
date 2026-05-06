@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — TaskForge</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <button class="mobile-toggle" id="mobileToggle">☰</button>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo"><h2>⚡ TaskForge</h2><span>Team Task Manager</span></div>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="/dashboard.html" class="nav-link"><span class="icon">📊</span>Dashboard</a></li>
+        <li class="nav-item"><a href="/projects.html" class="nav-link"><span class="icon">📁</span>Projects</a></li>
+        <li class="nav-item"><a href="/tasks.html" class="nav-link"><span class="icon">✅</span>Tasks</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="user-info" id="sidebarUser"></div>
+        <button class="btn-logout" id="logoutBtn">🚪 Sign Out</button>
+      </div>
+    </aside>
+    <main class="main-content">
+      <div class="page-header">
+        <div><h1>Projects</h1><p>Manage your team projects</p></div>
+        <button class="btn btn-primary admin-only" onclick="openProjectModal()">+ New Project</button>
+      </div>
+      <div id="projectsGrid" class="grid-3"></div>
+    </main>
+  </div>
+  <!-- Project Modal -->
+  <div class="modal-overlay hidden" id="projectModal">
+    <div class="modal">
+      <h2 id="projectModalTitle">New Project</h2>
+      <div id="projectAlertContainer"></div>
+      <form id="projectForm" onsubmit="handleProjectSubmit(event)">
+        <input type="hidden" id="projectId">
+        <div class="form-group"><label>Project Name</label><input type="text" id="projectName" required minlength="2"></div>
+        <div class="form-group"><label>Description</label><textarea id="projectDesc" rows="3"></textarea></div>
+        <div class="form-group"><label>Color</label><input type="color" id="projectColor" value="#667eea" style="height:40px"></div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeProjectModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="projectSubmitBtn">Create Project</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Members Modal -->
+  <div class="modal-overlay hidden" id="membersModal">
+    <div class="modal">
+      <h2>Team Members</h2>
+      <div id="membersAlertContainer"></div>
+      <div id="currentMembers" style="margin-bottom:20px"></div>
+      <h4 style="margin-bottom:12px" class="admin-only">Add Member</h4>
+      <div id="availableUsers" class="admin-only"></div>
+      <div class="modal-actions"><button class="btn btn-secondary" onclick="closeMembersModal()">Close</button></div>
+    </div>
+  </div>
+  <script src="/js/api.js"></script>
+  <script src="/js/projects.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tasks — TaskForge</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <button class="mobile-toggle" id="mobileToggle">☰</button>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo"><h2>⚡ TaskForge</h2><span>Team Task Manager</span></div>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="/dashboard.html" class="nav-link"><span class="icon">📊</span>Dashboard</a></li>
+        <li class="nav-item"><a href="/projects.html" class="nav-link"><span class="icon">📁</span>Projects</a></li>
+        <li class="nav-item"><a href="/tasks.html" class="nav-link"><span class="icon">✅</span>Tasks</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="user-info" id="sidebarUser"></div>
+        <button class="btn-logout" id="logoutBtn">🚪 Sign Out</button>
+      </div>
+    </aside>
+    <main class="main-content">
+      <div class="page-header">
+        <div><h1>Tasks</h1><p>Manage and track all tasks</p></div>
+        <button class="btn btn-primary admin-only" onclick="openTaskModal()">+ New Task</button>
+      </div>
+      <div class="task-filters">
+        <select id="filterProject" onchange="loadTasks()"><option value="">All Projects</option></select>
+        <select id="filterStatus" onchange="loadTasks()"><option value="">All Status</option><option value="todo">To Do</option><option value="in-progress">In Progress</option><option value="review">Review</option><option value="done">Done</option></select>
+        <select id="filterPriority" onchange="loadTasks()"><option value="">All Priority</option><option value="low">Low</option><option value="medium">Medium</option><option value="high">High</option><option value="urgent">Urgent</option></select>
+        <input type="text" id="filterSearch" placeholder="Search tasks..." oninput="debounceSearch()">
+      </div>
+      <div class="task-board" id="taskBoard"></div>
+    </main>
+  </div>
+  <!-- Task Modal -->
+  <div class="modal-overlay hidden" id="taskModal">
+    <div class="modal">
+      <h2 id="taskModalTitle">New Task</h2>
+      <div id="taskAlertContainer"></div>
+      <form id="taskForm" onsubmit="handleTaskSubmit(event)">
+        <input type="hidden" id="taskId">
+        <div class="form-group"><label>Title</label><input type="text" id="taskTitle" required></div>
+        <div class="form-group"><label>Description</label><textarea id="taskDescription" rows="3"></textarea></div>
+        <div class="form-group"><label>Project</label><select id="taskProject" required></select></div>
+        <div class="form-group"><label>Assignee</label><select id="taskAssignee"><option value="">Unassigned</option></select></div>
+        <div class="form-group"><label>Priority</label><select id="taskPriority"><option value="low">Low</option><option value="medium" selected>Medium</option><option value="high">High</option><option value="urgent">Urgent</option></select></div>
+        <div class="form-group"><label>Status</label><select id="taskStatus"><option value="todo">To Do</option><option value="in-progress">In Progress</option><option value="review">Review</option><option value="done">Done</option></select></div>
+        <div class="form-group"><label>Due Date</label><input type="date" id="taskDueDate"></div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeTaskModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="taskSubmitBtn">Create Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="/js/api.js"></script>
+  <script src="/js/tasks.js"></script>
+</body>
+</html>
