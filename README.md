@@ -227,18 +227,6 @@ git push -u origin main
 
 ---
 
-## 🎨 UI Design
-
-TaskForge features a **premium glassmorphism dark theme** with:
-- 🖤 Deep dark gradient background
-- 🪟 Frosted-glass cards with `backdrop-filter: blur()`
-- ✨ Smooth micro-animations and hover effects
-- 🌈 Electric purple → cyan accent gradient
-- 📱 Fully responsive design (mobile + desktop)
-- 🔤 Google Fonts: Inter + Space Grotesk
-
----
-
 ## 🧪 Testing the App
 
 ### Quick Start Flow:
